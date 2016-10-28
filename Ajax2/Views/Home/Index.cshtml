@@ -1,0 +1,23 @@
+﻿@model Ajax2.Models.DepartmentsModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<br />
+
+@using (Ajax.BeginForm("FilterDepartmentsAjax",
+                       new AjaxOptions
+                       {
+                           HttpMethod = "POST",
+                           InsertionMode = InsertionMode.Replace,
+                           UpdateTargetId = "department-table"
+                       }))
+{
+    @Html.CheckBoxFor(model => model.Filtered)
+    <input type="submit" value="Submit" />
+}
+
+<div id="department-table">
+    @{ Html.RenderPartial("DepartmentsTablePartial", Model); }    
+</div>
