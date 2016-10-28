@@ -14,8 +14,9 @@
                            UpdateTargetId = "department-table"
                        }))
 {
-    @Html.CheckBoxFor(model => model.Filtered)
-    <input type="submit" value="Submit" />
+    <label>Filter: </label>
+    @Html.CheckBoxFor(model => model.Filtered, new { onclick = "$(this).parents('form:first').find(':submit')[0].click();" })
+    <input type="submit" value="Submit" style="display: none" />
 }
 
 <div id="department-table">
