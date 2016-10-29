@@ -11,7 +11,8 @@
                        {
                            HttpMethod = "POST",
                            InsertionMode = InsertionMode.Replace,
-                           UpdateTargetId = "department-table"
+                           UpdateTargetId = "department-table",
+                           OnSuccess = "tableUpdated",
                        }))
 {
     <label>Filter: </label>
@@ -22,3 +23,16 @@
 <div id="department-table">
     @{ Html.RenderPartial("DepartmentsTablePartial", Model); }    
 </div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#deparment-table').DataTable();
+        });
+
+        function tableUpdated() {
+            $('#deparment-table').DataTable().draw();
+        }
+    </script>    
+}
