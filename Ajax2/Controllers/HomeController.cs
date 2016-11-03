@@ -19,7 +19,7 @@ namespace Ajax2.Controllers
         }
 
         [HttpPost]
-        public PartialViewResult FilterDepartmentsAjax(DepartmentsModel model)
+        public ActionResult FilterDepartmentsAjax(DepartmentsModel model)
         {
             var updatedModel = new DepartmentsModel
             {
@@ -27,7 +27,10 @@ namespace Ajax2.Controllers
                 Departments = GetDepartments(filtered: model.Filtered),
             };
 
-            return PartialView("DepartmentsTablePartial", updatedModel);
+            if (Request.IsAjaxRequest())
+                return PartialView("DepartmentsTablePartial", updatedModel);
+
+            return View("Index", updatedModel);
         }
 
         private IEnumerable<DepartmentModel> GetDepartments(bool filtered)

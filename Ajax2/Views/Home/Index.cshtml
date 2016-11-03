@@ -17,7 +17,7 @@
 {
     <label>Filter: </label>
     @Html.CheckBoxFor(model => model.Filtered, new { onclick = "$(this).parents('form:first').find(':submit')[0].click();" })
-    <input type="submit" value="Submit" style="display: none" />
+    <input id="input-filter" type="submit" value="Submit" />
 }
 
 <div id="department-table">
@@ -28,6 +28,7 @@
 {
     <script type="text/javascript">
         $(document).ready(function () {
+            $('#input-filter').hide();
             $('#deparment-table').DataTable();
         });
 
